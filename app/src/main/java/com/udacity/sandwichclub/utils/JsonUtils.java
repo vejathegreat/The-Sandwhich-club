@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
-    private final static String NAME_CODE = "name";
-    private final static String MAIN_NAME_CODE = "mainName";
-    private final static String ALSO_KNOWN_AS_CODE = "alsoKnownAs";
-    private final static String PLACE_OF_ORIGIN_CODE = "placeOfOrigin";
-    private final static String DESCRIPTION_CODE = "description";
-    private final static String IMAGE_CODE = "image";
-    private final static String INGREDIENTS_CODE = "ingredients";
+    private final static String NAME = "name";
+    private final static String MAIN_NAME = "mainName";
+    private final static String ALSO_KNOWN_AS = "alsoKnownAs";
+    private final static String PLACE_OF_ORIGIN = "placeOfOrigin";
+    private final static String DESCRIPTION = "description";
+    private final static String IMAGE_URL = "image";
+    private final static String INGREDIENTS = "ingredients";
 
     public static Sandwich parseSandwichJson(String json) {
 
@@ -24,24 +24,24 @@ public class JsonUtils {
             Sandwich sandwichItem = new Sandwich();
             JSONObject object = new JSONObject(json);
 
-            JSONObject name = object.getJSONObject(NAME_CODE);
-            String mainName = name.getString(MAIN_NAME_CODE);
+            JSONObject name = object.getJSONObject(NAME);
+            String mainName = name.getString(MAIN_NAME);
             sandwichItem.setMainName(mainName);
 
-            JSONArray JSONArrayAlsoKnownAs = name.getJSONArray(ALSO_KNOWN_AS_CODE);
+            JSONArray JSONArrayAlsoKnownAs = name.getJSONArray(ALSO_KNOWN_AS);
             List<String> alsoKnownAsList = convertToList(JSONArrayAlsoKnownAs);
             sandwichItem.setAlsoKnownAs(alsoKnownAsList);
 
-            String placeOfOrigin = object.optString(PLACE_OF_ORIGIN_CODE);
+            String placeOfOrigin = object.optString(PLACE_OF_ORIGIN);
             sandwichItem.setPlaceOfOrigin(placeOfOrigin);
 
-            String description = object.getString(DESCRIPTION_CODE);
+            String description = object.getString(DESCRIPTION);
             sandwichItem.setDescription(description);
 
-            String image = object.getString(IMAGE_CODE);
+            String image = object.getString(IMAGE_URL);
             sandwichItem.setImage(image);
 
-            JSONArray JSONArrayIngredients = object.getJSONArray(INGREDIENTS_CODE);
+            JSONArray JSONArrayIngredients = object.getJSONArray(INGREDIENTS);
             List<String> ingredientsList = convertToList(JSONArrayIngredients);
             sandwichItem.setIngredients(ingredientsList);
 
